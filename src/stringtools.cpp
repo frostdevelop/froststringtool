@@ -1,6 +1,6 @@
 #include "stringtools.h"
+#include <cctype>
 
-stringtools::stringtools() {}
 std::string stringtools::trimEnds(const  std::string str){
     unsigned short start=0,end=str.size();
     while(start < str.size() && std::isspace(str[start])){
@@ -24,7 +24,7 @@ std::string stringtools::trimR(const std::string str){
     unsigned short end=str.size();
     do{
         end--;
-    } while(std::isspace(str[end]) && end > 0);
+    } while(std::isspace(str[end]) && end >= 0);
     return str.substr(0,1+end);
 }
 
@@ -34,4 +34,17 @@ unsigned long stringtools::checksum(std::string str){
         fullsum += static_cast<unsigned>(str[i]);
     }
     return fullsum;
+};
+
+std::string stringtools::toLower(std::string str){
+    for(size_t i=0;i<str.size();i++){
+        str[i] = std::tolower(str[i]);
+    }
+    return str;
+};
+std::string stringtools::toUpper(std::string str){
+    for(size_t i=0;i<str.size();i++){
+        str[i] = std::toupper(str[i]);
+    }
+    return str;
 };
